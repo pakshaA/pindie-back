@@ -82,7 +82,7 @@ const hashPassword = async (req, res, next) => {
 
 const checkIfUserExists = async (req, res, next) => {
     const isInArray = req.usersArray.find((u) => {
-        return req.body.name === u.name;
+        return req.body.email === u.email;
     })
     if (isInArray) {
         res.setHeader('Content-Type', 'application/json');
