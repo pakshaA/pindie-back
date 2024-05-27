@@ -85,7 +85,7 @@ const checkIfCategoriesAvaliable = async (req, res, next) => {
         next();
         return;
     }
-    if (req.body.categories || req.body.categories.lenght === 0) {
+    if (!req.body.categories || req.body.categories.length === 0) {
         res.setHeader('Content-Type', 'application/json');
         res.status(400).send(JSON.stringify({ message: "No categories selected" }));
     } else {
@@ -110,7 +110,7 @@ const checkIfUsersAreSafe = async (req, res, next) => {
 
 const checkIsGameExists = async (req, res, next) => {
     const isInArray = req.gamesArray.find((c) => {
-        return req.body.name === c.name;
+        return req.body.title === c.title;
     })
     if (isInArray) {
         res.setHeader('Content-Type', 'application/json');
