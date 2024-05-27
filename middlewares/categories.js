@@ -27,7 +27,7 @@ const findCategoryById = async (req, res, next) => {
 
 const updateCategory = async (req, res, next) => {
     try {
-        req.category = await category.findByIdAndUpdate(req.params.id, req.body);
+        req.category = await categories.findByIdAndUpdate(req.params.id, req.body);
         next();
     } catch (err) {
         res.setHeader('Content-Type', 'application/json');
@@ -58,7 +58,7 @@ const checkIfCategoryExists = async (req, res, next) => {
 };
 
 const checkEmptyName = async (req, res, next) => {
-    if (!req.body.title) {
+    if (!req.body.name) {
         res.setHeader('Content-Type', 'application/json');
         res.status(404).send(JSON.stringify({ message: "No category title" }));
     } else {
