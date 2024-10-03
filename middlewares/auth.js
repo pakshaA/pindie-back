@@ -2,11 +2,11 @@ const jwt = require('jsonwebtoken');
 
 const checkCookiesJWT = (req, res, next) => {
     if (!req.cookies.jwt) {
-        return res.redirect('/');
+        return res.redirect("/");
     }
     req.headers.authorization = `Bearer ${req.cookies.jwt}`;
     next();
-}
+};
 
 const checkAuth = (req, res, next) => {
     const { authorization } = req.headers;

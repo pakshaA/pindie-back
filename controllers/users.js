@@ -24,6 +24,7 @@ const sendUserDeleted = (req, res) => {
 }
 
 const sendMe = (req, res) => {
+    console.log(JSON.stringify(req.user))
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(req.user));
 }

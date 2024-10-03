@@ -37,7 +37,7 @@ const gameSchema = new mongoose.Schema({
 gameSchema.statics.findGameByCategory = function (category) {
   return this.find({})
     .populate({
-      path: "categories",
+      path: "category",
       match: { name: category }
     })
     .populate({

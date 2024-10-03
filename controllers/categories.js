@@ -18,7 +18,7 @@ const sendCategoryUpdated = (req, res) => {
     res.status(200).end(JSON.stringify({ message: "Updated category successfully" }));
 }
 
-const sendCategoryDeleted = (req, res) => {
+const sendCategoryDeleted = (res, req) => {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(req.category));
 }

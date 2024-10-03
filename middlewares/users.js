@@ -7,8 +7,9 @@ const findAllUsers = async (req, res, next) => {
 };
 
 const createUser = async (req, res, next) => {
+    console.log(req, res, next)
     try {
-        req.game = await users.create(req.body);
+        req.user = await users.create(req.body);
         next();
     } catch (err) {
         res.setHeader('Content-Type', 'application/json');
@@ -48,10 +49,11 @@ const deleteUser = async (req, res, next) => {
 
 const checkEmptyNameAndEmailAndPassword = async (req, res, next) => {
     if (
-        !req.body.username ||
+        req.body.name ||
         !req.body.email ||
         !req.body.password
     ) {
+        console.log(req.body.name, req.body.email, req.body.password);
         res.setHeader('Content-Type', 'application/json');
         res.status(404).send(JSON.stringify({ message: "Заполни все поля" }));
     } else {
@@ -61,13 +63,11 @@ const checkEmptyNameAndEmailAndPassword = async (req, res, next) => {
 
 const checkNameAndEmail = async (req, res, next) => {
     if (
-        !req.body.username ||
+        !req.body.name ||
         !req.body.email
     ) {
         res.setHeader('Content-Type', 'application/json');
         res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
-    } else {
-        next();
     }
 };
 
@@ -84,9 +84,9 @@ const hashPassword = async (req, res, next) => {
 
 const checkIfUserExists = async (req, res, next) => {
     const isInArray = req.usersArray.find((u) => {
-        return req.body.email === u.email;
+        return req.body.name === u.name;
     })
-    if (isInArray) {
+    if (!isInArray) {
         res.setHeader('Content-Type', 'application/json');
         res.status(400).send(JSON.stringify({ message: "User already exists" }));
     } else {
