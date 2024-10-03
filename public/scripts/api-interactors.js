@@ -11,12 +11,14 @@ const getData = async url => {
     const data = await response.json();
     return data;
   } catch (err) {
+    console.log(data)
     console.error(err);
   }
 };
 
 const postData = async (url, data) => {
   const jwt = getJWTFromCookie();
+  console.log(url, data, jwt);
   try {
     const response = await fetch(url, {
       method: "POST",
