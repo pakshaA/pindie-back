@@ -9,6 +9,8 @@ const getData = async url => {
   try {
     const response = await fetch(url);
     const data = await response.json();
+    console.log(response, data)
+
     return data;
   } catch (err) {
     console.log(data)
