@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB_URL = 'mongodb://127.0.0.1/pindie';
+const DB_URL = 'mongodb+srv://pakshaartem:a1082805@cluster0.g7r53.mongodb.net/pindie?retryWrites=true&w=majority&appName=Cluster0';
 
 async function connectToDatabase() {
     try {
